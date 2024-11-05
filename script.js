@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Fonction pour rediriger vers WhatsApp avec message et image
 function orderProduct(message, image) {
-    const phoneNumber = "237XXXXXXXXX"; // Remplacez par votre numéro de téléphone
+    const phoneNumber = "237652257129"; // Remplacez par votre numéro de téléphone
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(`${message}\nVoir l'image : ${window.location.origin}/${image}`)}`;
     window.open(whatsappUrl, '_blank');
 }
