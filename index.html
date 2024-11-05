@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les douceurs de Chacha</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header et Bannière -->
+    <header class="text-center py-8 bg-pink-500 text-white">
+        <div class="container mx-auto px-4">
+            <img src="assets/logo.jpeg" alt="Logo de Les douceurs de Chacha" class="mx-auto mb-4 w-24 h-24 rounded-full">
+            <h1 class="text-4xl font-bold">Les douceurs de Chacha</h1>
+            <p class="mt-2 text-lg">Vous faire plaisir nous fait plaisir !</p>
+        </div>
+    </header>
+
+    <section class="bg-blue-100 text-center py-4 mb-4">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-semibold">Promotion Spéciale : 20% de réduction sur toutes les commandes !</h2>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-200 p-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="#produits" class="text-blue-600 hover:underline">Produits</a>
+            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+        </div>
+    </nav>
+
+<!-- Bloc de Statistiques en Slider -->
+<section class="bg-gray-200 py-6">
+    <div class="container mx-auto text-center relative">
+        <div id="stats-slider" class="overflow-hidden w-full max-w-md mx-auto">
+            <!-- Les éléments du slider -->
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-0">
+                <h3 class="text-2xl font-semibold">Nombre de visites</h3>
+                <p id="visit-count" class="text-3xl text-gray-800 font-bold">0</p>
+            </div>
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
+                <h3 class="text-2xl font-semibold">Commandes réalisées</h3>
+                <p id="order-count" class="text-3xl text-gray-800 font-bold">0</p>
+            </div>
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
+                <h3 class="text-2xl font-semibold">Taux d'engagement</h3>
+                <p id="engagement-rate" class="text-3xl text-gray-800 font-bold">0%</p>
+            </div>
+        </div>
+
+        <!-- Boutons de navigation pour le slider -->
+        <div class="absolute inset-y-0 flex justify-between w-full px-4">
+            <button id="prevBtn" class="bg-gray-500 text-white p-2 rounded-full focus:outline-none hover:bg-gray-600 transition">◀</button>
+            <button id="nextBtn" class="bg-gray-500 text-white p-2 rounded-full focus:outline-none hover:bg-gray-600 transition">▶</button>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Liste de Produits -->
+    <main class="container mx-auto mt-8 p-4">
+        <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Produits chargés dynamiquement -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="mt-6 flex justify-center">
+            <!-- Pagination dynamique -->
+        </div>
+
+        <!-- Contact -->
+        <section id="contact" class="mt-16 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-center">Contactez-nous</h2>
+            <form id="contact-form" class="mt-6">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Nom:</label>
+                    <input type="text" id="name" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email:</label>
+                    <input type="email" id="email" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700">Message:</label>
+                    <textarea id="message" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Envoyer</button>
+            </form>
+            <div id="feedback" class="mt-4 hidden text-green-500 text-center"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Les douceurs de Chacha. Tous droits réservés.</p>
+            <p>Suivez-nous sur les réseaux sociaux</p>
+        </div>
+    </footer>
+</body>
+</html>

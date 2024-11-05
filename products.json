@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Gâteau nature",
+        "price": "1500 XAF / 2000 XAF",
+        "description": "Un délicieux gâteau nature fait maison.",
+        "image": "https://img.cuisineaz.com/660x660/2024/03/15/i197821-gateau-nature-moelleux-au-airfryer.jpg",
+        "ratings": [5, 4, 4, 5],
+        "whatsappMessage": "Gâteau nature - 1500 XAF"
+    },
+    {
+        "name": "Gâteau Marbré",
+        "price": "1500 XAF / 2000 XAF",
+        "description": "Un gâteau marbré riche et savoureux.",
+        "image": "https://www.hervecuisine.com/wp-content/uploads/2014/10/marbresite-1280x720.jpg",
+        "ratings": [4, 5, 5, 4],
+        "whatsappMessage": "Gâteau Marbré - 1500 XAF"
+    },
+    {
+        "name": "Gâteau au yaourt",
+        "price": "2000 XAF / 2500 XAF",
+        "description": "Un gâteau moelleux à base de yaourt.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDi_SW49SLybZpBA8ckNMIKqTe0OsqY7w5Eg&s",
+        "ratings": [4, 4, 5],
+        "whatsappMessage": "Gâteau au yaourt - 2000 XAF"
+    },
+    {
+        "name": "Donuts",
+        "price": "50 XAF",
+        "description": "Délicieux donuts sucrés.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDakU9BiaocU05BRlghz_GK3O_rM42n5IELw&s",
+        "ratings": [5, 5, 4],
+        "whatsappMessage": "Donuts - 50 XAF"
+    },
+    {
+        "name": "Croquete nature au lait",
+        "price": "600 XAF / 1300 XAF",
+        "description": "Croquete nature fait avec du lait frais.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2620ec_Z3Hbl0mAG-R4D-MlRqbTMyBE60Q&s",
+        "ratings": [4, 5, 5],
+        "whatsappMessage": "Ross nature au lait - 600 XAF"
+    },
+    {
+        "name": "Caramel Arachide",
+        "price": "500 XAF / 1000 XAF",
+        "description": "Un délicieux caramel avec des arachides.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGBO4h-Uws1stCSDt01jB-tx1zuL7TW3VuzQ&s",
+        "ratings": [5, 4, 4],
+        "whatsappMessage": "Caramel Arachide - 500 XAF"
+    },
+    {
+        "name": "Cacahuètes",
+        "price": "700 XAF / 1500 XAF",
+        "description": "Cacahuètes délicieuses et croustillantes.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYqCe21momTxhmOdlnFx11DQGttCOm_a43g&s",
+        "ratings": [4, 5, 5],
+        "whatsappMessage": "Cacahuètes - 700 XAF"
+    },
+    {
+        "name": "Arachides salées",
+        "price": "700 XAF / 1500 XAF",
+        "description": "Arachides salées croquantes.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkB_FvbXMR9X0mtwNzBBpugHmk3qsf-ysYGA&s",
+        "ratings": [5, 4, 5],
+        "whatsappMessage": "Arachides salées - 700 XAF"
+    }
+]
