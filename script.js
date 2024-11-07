@@ -1,117 +1,173 @@
-let currentPage = 1;               // Page actuelle
-const productsPerPage = 6;         // Nombre de produits par page
-let products = [];                 // Tableau de produits
+// Variables globales pour la recherche, filtrage et produits
+const searchInput = document.getElementById('search-input');
+const categoryFilter = document.getElementById('category-filter');
+const productsContainer = document.getElementById('products-container');
+const pagination = document.getElementById('pagination');
+const reviewsContainer = document.getElementById('reviews-container');
+const orderPopup = document.getElementById('order-popup');
+const closePopupButton = document.getElementById('close-popup');
+const reviewForm = document.getElementById('review-form');
 
-// Charger les produits depuis un fichier JSON
+// Variable globale pour stocker les produits
+let allProducts = [];
+
+// Charger les produits depuis le fichier JSON
 async function loadProducts() {
     const response = await fetch('products.json');
-    products = await response.json();
-    displayProducts();
-    setupPagination();
-    displayStats();
+    allProducts = await response.json();
+    displayProducts(allProducts);
 }
 
-// Afficher les produits en fonction de la pagination bg-pink-500
-function displayProducts() {
-    const productsContainer = document.getElementById('products-container');
-    productsContainer.innerHTML = ''; // Réinitialise le conteneur des produits
+// Calcul de la note moyenne d'un produit
+function calculateAverageRating(ratings) {
+    const total = ratings.reduce((acc, rating) => acc + rating, 0);
+    return (total / ratings.length).toFixed(1);
+}
 
+// Fonction pour afficher les produits dans le DOM
+function displayProducts(products) {
+    productsContainer.innerHTML = ''; // Clear current products
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
     const productsToDisplay = products.slice(startIndex, endIndex);
 
     productsToDisplay.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'bg-white rounded-lg shadow-md p-6 text-center transition-transform transform hover:scale-105';
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg mb-4">
-            <h2 class="text-xl md:text-2xl font-semibold">${product.name}</h2>
-            <p class="mt-2 text-gray-700">${product.price}</p>
-            <p class="mt-2 text-gray-600">${product.description}</p>
-            <button onclick="orderProduct('${product.whatsappMessage}', '${product.image}')" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">
-                Commander sur WhatsApp
-            </button>
+        const averageRating = calculateAverageRating(product.ratings);
+        const starsHTML = generateStars(averageRating); // Générer les étoiles
+        const productHTML = `
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-center">${product.name}</h3>
+                <p class="text-gray-700 text-center">${product.description}</p>
+                <p class="font-semibold text-center">Prix: ${product.price}</p>
+                <p class="text-yellow-500 text-center">${starsHTML} (${averageRating} / 5)</p> <!-- Affichage des étoiles et de la note -->
+                <button class="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600 mt-4" onclick="redirectToWhatsApp('${product.whatsappMessage}')">Commander via WhatsApp</button>
+            </div>
         `;
-        productsContainer.appendChild(productCard);
+        productsContainer.innerHTML += productHTML;
     });
+
+    updatePagination(products.length);
 }
 
-// Configurer la pagination pour les produits
-function setupPagination() {
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ''; // Réinitialise le conteneur de pagination
+// Pagination - Nombre de produits par page
+const productsPerPage = 3;
+let currentPage = 1;
 
-    const totalPages = Math.ceil(products.length / productsPerPage);
+// Mise à jour de la pagination
+function updatePagination(filteredProductsCount) {
+    const totalPages = Math.ceil(filteredProductsCount / productsPerPage);
+    pagination.innerHTML = ''; // Clear current pagination
+
     for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement('button');
-        pageButton.innerText = i;
+        pageButton.classList.add('px-4', 'py-2', 'mx-2', 'bg-pink-200', 'text-white', 'rounded', 'hover:bg-pink-300');
         pageButton.className = `mx-1 px-3 py-1 rounded ${i === currentPage ? 'bg-pink-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`;
-        pageButton.onclick = () => {
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
             currentPage = i;
-            displayProducts();
-            setupPagination();
-        };
-        paginationContainer.appendChild(pageButton);
-    }
-}
-
-// Afficher les statistiques fictives
-function displayStats() {
-    const visitCount = 5423;
-    const orderCount = 1274;
-    const engagementRate = ((orderCount / visitCount) * 100).toFixed(2);
-
-    document.getElementById("visit-count").innerText = visitCount;
-    document.getElementById("order-count").innerText = orderCount;
-    document.getElementById("engagement-rate").innerText = `${engagementRate}%`;
-}
-
-// Slider pour le bloc de statistiques
-document.addEventListener("DOMContentLoaded", () => {
-    let currentSlide = 0;
-    const slides = document.querySelectorAll("#stats-slider .slider-item");
-    const totalSlides = slides.length;
-
-    function updateSlider() {
-        slides.forEach((slide, index) => {
-            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+            loadProducts();
         });
+        pagination.appendChild(pageButton);
     }
+}
 
-    document.getElementById("nextBtn").addEventListener("click", () => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-    });
-
-    document.getElementById("prevBtn").addEventListener("click", () => {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-    });
-
-    updateSlider();
-});
-
-// Fonction pour rediriger vers WhatsApp avec message et image
-function orderProduct(message, image) {
-    const phoneNumber = "237652257129"; // Remplacez par votre numéro de téléphone
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(`${message}\nVoir l'image : ${window.location.origin}/${image}`)}`;
+// Fonction pour rediriger vers WhatsApp pour commander
+function redirectToWhatsApp(message) {
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/237652257129?text=${encodedMessage}`; // Remplacez par votre numéro WhatsApp
     window.open(whatsappUrl, '_blank');
 }
 
-// Gestion du formulaire de contact
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const feedback = document.getElementById('feedback');
-    feedback.innerText = `Merci ${name} ! Votre message a été envoyé.`;
-    feedback.classList.remove('hidden');
+// Fonction d'autocomplétion pour la recherche
+function autocompleteSearch(query) {
+    return allProducts.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
+}
 
-    // Réinitialiser le formulaire après un délai
-    setTimeout(() => {
-        feedback.classList.add('hidden');
-        this.reset();
-    }, 3000);
+// Fonction pour gérer la recherche et la mise à jour des résultats
+function searchProducts() {
+    const query = searchInput.value.trim();
+    if (query === '') {
+        displayProducts(allProducts);
+    } else {
+        const filteredProducts = autocompleteSearch(query);
+        displayProducts(filteredProducts);
+    }
+}
+
+// Recherche et filtrage de produits
+searchInput.addEventListener('input', function() {
+    searchProducts();
 });
 
+categoryFilter.addEventListener('change', function() {
+    loadProducts();
+});
+
+// Avis des clients
+const reviews = [
+    { name: 'Alice', message: 'Excellents produits, je recommande !' },
+    { name: 'Bob', message: 'Très bon service et délicieux gâteaux.' }
+];
+
+function displayReviews() {
+    reviewsContainer.innerHTML = ''; // Clear current reviews
+    reviews.forEach(review => {
+        const reviewHTML = `
+            <div class="bg-gray-100 p-4 mb-4 rounded-lg">
+                <p class="font-semibold">${review.name}</p>
+                <p>${review.message}</p>
+            </div>
+        `;
+        reviewsContainer.innerHTML += reviewHTML;
+    });
+}
+
+displayReviews();
+
+reviewForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('review-name').value;
+    const message = document.getElementById('review-message').value;
+    reviews.push({ name, message });
+    displayReviews();
+    reviewForm.reset();
+});
+
+// Pop-up de confirmation de commande
+closePopupButton.addEventListener('click', function() {
+    orderPopup.classList.add('hidden');
+});
+
+// Ouvrir le pop-up de confirmation après une commande
+function openOrderPopup() {
+    orderPopup.classList.remove('hidden');
+}
+
+// Fonction pour générer les étoiles en fonction de la note moyenne
+function generateStars(rating) {
+    let stars = '';
+    const fullStars = Math.floor(rating); // Nombre d'étoiles pleines
+    const halfStar = rating % 1 >= 0.5; // Si la note est >= 0.5, ajoute une demi-étoile
+
+    // Ajouter les étoiles pleines
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<span class="text-yellow-500">&#9733;</span>'; // Étoile pleine
+    }
+
+    // Ajouter la demi-étoile si nécessaire
+    if (halfStar) {
+        stars += '<span class="text-yellow-500">&#9733;</span>'; // Demi-étoile
+    }
+
+    // Ajouter les étoiles vides pour compléter jusqu'à 5
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<span class="text-gray-300">&#9733;</span>'; // Étoile vide
+    }
+
+    return stars;
+}
+
 // Charger les produits au démarrage
-window.onload = loadProducts;
+loadProducts();

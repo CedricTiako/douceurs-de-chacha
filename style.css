@@ -1,0 +1,16 @@
+/* Custom styles */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+#order-popup {
+    display: none;
+}
+
+#order-popup.open {
+    display: flex;
+}
