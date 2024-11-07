@@ -28,7 +28,7 @@ function displayProducts() {
             <h2 class="text-xl md:text-2xl font-semibold">${product.name}</h2>
             <p class="mt-2 text-gray-700">${product.price}</p>
             <p class="mt-2 text-gray-600">${product.description}</p>
-            <button onclick="orderProduct('${product.whatsappMessage}', '${product.image}')" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            <button onclick="orderProduct('${product.whatsappMessage}', '${product.image}')" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">
                 Commander sur WhatsApp
             </button>
         `;

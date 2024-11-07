@@ -14,6 +14,8 @@
     <meta property="og:url" content="https://douceurs-de-chacha.vercel.app/">
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="script.js" defer></script>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -26,7 +28,7 @@
         </div>
     </header>
 
-    <section class="bg-blue-100 text-center py-4 mb-4">
+    <section class="bg-pink-100 text-center py-4 mb-4">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-semibold">Promotion Spéciale : 20% de réduction sur toutes les commandes !</h2>
         </div>
@@ -35,37 +37,11 @@
     <!-- Navigation -->
     <nav class="bg-gray-200 p-4">
         <div class="container mx-auto flex justify-center space-x-4">
-            <a href="#produits" class="text-blue-600 hover:underline">Produits</a>
-            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+            <a href="#produits" class="text-pink-600 hover:underline">Produits</a>
+            <a href="#contact" class="text-pink-600 hover:underline">Contact</a>
         </div>
     </nav>
 
-<!-- Bloc de Statistiques en Slider -->
-<section class="bg-gray-200 py-6">
-    <div class="container mx-auto text-center relative">
-        <div id="stats-slider" class="overflow-hidden w-full max-w-md mx-auto">
-            <!-- Les éléments du slider -->
-            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-0">
-                <h3 class="text-2xl font-semibold">Nombre de visites</h3>
-                <p id="visit-count" class="text-3xl text-gray-800 font-bold">0</p>
-            </div>
-            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
-                <h3 class="text-2xl font-semibold">Commandes réalisées</h3>
-                <p id="order-count" class="text-3xl text-gray-800 font-bold">0</p>
-            </div>
-            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
-                <h3 class="text-2xl font-semibold">Taux d'engagement</h3>
-                <p id="engagement-rate" class="text-3xl text-gray-800 font-bold">0%</p>
-            </div>
-        </div>
-
-        <!-- Boutons de navigation pour le slider -->
-        <div class="absolute inset-y-0 flex justify-between w-full px-4">
-            <button id="prevBtn" class="bg-gray-500 text-white p-2 rounded-full focus:outline-none hover:bg-gray-600 transition">◀</button>
-            <button id="nextBtn" class="bg-gray-500 text-white p-2 rounded-full focus:outline-none hover:bg-gray-600 transition">▶</button>
-        </div>
-    </div>
-</section>
 
 
     <!-- Liste de Produits -->
@@ -95,14 +71,40 @@
                     <label for="message" class="block text-gray-700">Message:</label>
                     <textarea id="message" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded"></textarea>
                 </div>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Envoyer</button>
+                <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Envoyer</button>
             </form>
             <div id="feedback" class="mt-4 hidden text-green-500 text-center"></div>
         </section>
     </main>
+<!-- Bloc de Statistiques en Slider -->
+<section class="bg-gray-200 py-6">
+    <div class="container mx-auto text-center relative">
+        <div id="stats-slider" class="overflow-hidden w-full max-w-md mx-auto justify-center text-center" >
+            <!-- Les éléments du slider -->
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-0">
+                <h3 class="text-2xl font-semibold">Nombre de visites</h3>
+                <p id="visit-count" class="text-3xl text-gray-800 font-bold">0</p>
+            </div>
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
+                <h3 class="text-2xl font-semibold">Commandes réalisées</h3>
+                <p id="order-count" class="text-3xl text-gray-800 font-bold">0</p>
+            </div>
+            <div class="slider-item transition-transform duration-500 ease-in-out transform translate-x-full">
+                <h3 class="text-2xl font-semibold">Taux d'engagement</h3>
+                <p id="engagement-rate" class="text-3xl text-gray-800 font-bold">0%</p>
+            </div>
+        </div>
+
+        <!-- Boutons de navigation pour le slider -->
+        <div class="absolute inset-y-0 flex justify-between w-full px-4">
+            <button id="prevBtn" class="bg-pink-200 text-white p-2 rounded-full focus:outline-none hover:bg-pink-300 transition"><i class="fa-solid fa-chevron-left bg-pink-500 p-2 rounded-full"></i></button>
+            <button id="nextBtn" class="bg-pink-200 text-white p-2 rounded-full focus:outline-none hover:bg-pink-300 transition"><i class="fa-solid fa-chevron-right bg-pink-500 p-2 rounded-full"></i></button>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <footer class="bg-pink-500 text-white py-6">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 Les douceurs de Chacha. Tous droits réservés.</p>
             <p>Suivez-nous sur les réseaux sociaux</p>
